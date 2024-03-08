@@ -1,0 +1,121 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                             Friendly Bot         |
+//|                                         Copyright © 2022         |
+//|                                     Developed by Forex Robot Easy |
+//|                                            www.forexroboteasy.com|
+//+------------------------------------------------------------------+
+
+// Define input parameters
+input double Risk = 1.0; // Risk appetite of the user
+input bool EnableTrading = true; // Enable/disable trading
+input int MaxPositions = 5; // Maximum number of open positions
+input double GridStep = 0.01; // Grid step size
+input double PullbackThreshold = 0.02; // Pullback threshold for opening positions
+
+// Define global variables
+double accountBalance; // Account balance
+double accountEquity; // Account equity
+int totalPositions; // Total number of open positions
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Initialize global variables
+    accountBalance = AccountBalance();
+    accountEquity = AccountEquity();
+    totalPositions = 0;
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Perform necessary cleanup tasks
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Check if trading is enabled
+    if(!EnableTrading)
+        return;
+
+    // Check if there are already maximum number of positions open
+    if(totalPositions >= MaxPositions)
+        return;
+
+    // Check if market conditions and time frame are suitable
+    if(!IsMarketConditionsSuitable() || !IsTimeFrameSuitable())
+        return;
+
+    // Check if there is a clear market trend and open position on pullbacks
+    if(IsMarketTrendClear() && IsPullback())
+        OpenPosition();
+}
+
+//+------------------------------------------------------------------+
+//| Check if market conditions are suitable                           |
+//+------------------------------------------------------------------+
+bool IsMarketConditionsSuitable()
+{
+    // TODO: Implement logic to check market conditions
+
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Check if time frame is suitable                                   |
+//+------------------------------------------------------------------+
+bool IsTimeFrameSuitable()
+{
+    // TODO: Implement logic to check time frame
+
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Check if market trend is clear                                    |
+//+------------------------------------------------------------------+
+bool IsMarketTrendClear()
+{
+    // TODO: Implement logic to check market trend
+
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Check if there is a pullback                                      |
+//+------------------------------------------------------------------+
+bool IsPullback()
+{
+    // TODO: Implement logic to check for pullback
+
+    return true;
+}
+
+//+------------------------------------------------------------------+
+//| Open a new position on pullback                                   |
+//+------------------------------------------------------------------+
+void OpenPosition()
+{
+    // TODO: Implement logic to open a new position
+
+    // Increase the total number of positions
+    totalPositions++;
+}
+
+//+------------------------------------------------------------------+
+//| Expert execution function                                        |
+//+------------------------------------------------------------------+
+void OnTimer()
+{
+    // TODO: Implement logic for 24/7 operation
+}
